@@ -225,17 +225,20 @@
       to { transform: rotate(360deg); }
     }
 
+    /* Fixed Bottom Navigation Bar */
     nav {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
+      height: 65px;
       background: #ffffff;
       border-top: 1px solid #eeeeee;
-      padding: 10px 0;
       display: flex;
       justify-content: space-around;
-      z-index: 20;
+      align-items: center;
+      z-index: 100;
+      padding-bottom: env(safe-area-inset-bottom);
     }
 
     .nav-btn {
@@ -244,14 +247,24 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: #aaaaaa;
-      font-size: 10px;
-      font-weight: 700;
+      justify-content: center;
+      color: #8e8e93;
+      font-size: 11px;
+      font-weight: 600;
       cursor: pointer;
+      width: 50%;
+      height: 100%;
+      gap: 3px;
     }
 
     .nav-btn.active {
       color: #000000;
+      font-weight: 700;
+    }
+
+    .nav-icon {
+      font-size: 20px;
+      line-height: 1;
     }
 
     .pinterest-item {
@@ -313,30 +326,30 @@
   <!-- PINTEREST SCREEN -->
   <div id="screen-pinterest" class="screen-content hidden">
     <h2 style="font-size: 14px; font-weight: 800; margin-bottom: 4px;">Pinterest Outfit Matcher</h2>
-    <p style="font-size: 11px; color: #888888; margin-bottom: 16px;">Select items from your collection to find outfit combinations on Pinterest.</p>
+    <p style="font-size: 11px; color: #888888; margin-bottom: 16px;">Select items from your collection to discover curated Pinterest lookbooks.</p>
 
     <div id="pinterest-selection-list"></div>
 
     <button onclick="searchPinterestCombined()" class="btn-match" style="padding: 12px 0; font-size: 12px; margin-top: 16px;">
-      Search Outfit Matches on Pinterest
+      🔍 Search Outfit Matches on Pinterest
     </button>
   </div>
 
   <!-- PROCESSING OVERLAY -->
   <div id="processing-modal" class="processing-overlay hidden">
     <div class="spinner"></div>
-    <div style="font-size: 14px; font-weight: 700;">Isolating Clothes...</div>
+    <div style="font-size: 14px; font-weight: 700;">Isolating Garment...</div>
     <div style="font-size: 11px; color: #aaaaaa; margin-top: 4px;">Removing background from photo</div>
   </div>
 
-  <!-- BOTTOM NAVIGATION -->
+  <!-- BOTTOM NAVIGATION BAR (FIXED) -->
   <nav>
     <button onclick="switchTab('wardrobe')" id="nav-btn-wardrobe" class="nav-btn active">
-      <span style="font-size: 16px;">👔</span>
+      <span class="nav-icon">👕</span>
       <span>Wardrobe</span>
     </button>
     <button onclick="switchTab('pinterest')" id="nav-btn-pinterest" class="nav-btn">
-      <span style="font-size: 16px;">🧭</span>
+      <span class="nav-icon">🧭</span>
       <span>Pinterest Ideas</span>
     </button>
   </nav>
