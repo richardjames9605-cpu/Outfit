@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>BeSpoke Personal AI Wardrobe</title>
+  
+  <!-- PWA Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3050/3050239.png">
+
   <style>
     * {
       box-sizing: border-box;
@@ -228,7 +234,6 @@
       to { transform: rotate(360deg); }
     }
 
-    /* Fixed Navigation Bar at Bottom */
     nav {
       flex-shrink: 0;
       background: #ffffff;
@@ -357,6 +362,13 @@
 </div>
 
 <script>
+  // Register Service Worker for PWA installation
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW reg failed: ', err));
+    });
+  }
+
   const AppState = {
     wardrobe: [],
     activeCategory: 'all',
